@@ -28,8 +28,6 @@
 
 #include <stdlib.h>
 
-#define SLAB_SIZE (1024 * 1024)
-
 
 using namespace v8;
 
@@ -67,7 +65,7 @@ UDPWrap::~UDPWrap() {
 void UDPWrap::Initialize(Handle<Object> target) {
   HandleWrap::Initialize(target);
 
-  slab_allocator = new SlabAllocator(SLAB_SIZE);
+  slab_allocator = new SlabAllocator;
   AtExit(DeleteSlabAllocator, NULL);
 
   HandleScope scope;
